@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Grids & Circles</title>
+</head>
+<body class="container-fluid">
+<h1>Grids & Circles</h1>
+<h2>Production Management</h2>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a th:href="@{/products}">
+        <button class="btn btn-success">Product</button>
+    </a>
+</div>
+<table class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Order id</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Postcode</th>
+        <th scope="col">OrderStatus</th>
+        <th scope="col">CreatedAt</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order: ${orders}" th:object="${order}">
+        <td th:text="*{orderId}"></td>
+        <td th:text="*{email.address}"></td>
+        <td th:text="*{address}"></td>
+        <td th:text="*{postcode}"></td>
+        <td th:text="*{orderStatus}"></td>
+        <td th:text="*{createdAt}"></td>
+        <td>
+            <a th:href="@{/delete-order/{id} (id = ${order.orderId})}">
+                <button type="submit" class="btn btn-secondary">Delete</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
